@@ -10,13 +10,18 @@ class MethodChannelVlcLibraryIntegration extends VlcLibraryIntegrationPlatform {
   final methodChannel = const MethodChannel('vlc_library_integration');
 
   @override
-  Future<void> play() async {
-    return await methodChannel.invokeMethod('play');
+  Future<void> play(String url) async {
+    return await methodChannel.invokeMethod('play', {'url': url});
+  }
+
+  @override
+  Future<void> stop() async {
+    return await methodChannel.invokeMethod('stop');
   }
 
   @override
   Future<void> initialize() async {
-    return await methodChannel.invokeMethod('play');
+    return await methodChannel.invokeMethod('initialize');
   }
 
   @override

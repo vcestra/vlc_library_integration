@@ -41,15 +41,17 @@ class VlcLibraryIntegrationPlugin: FlutterPlugin, MethodCallHandler {
         result.success("Release VLC Done!")
       }
       "play" -> {
-        var url: String? = call.argument("url")
+        val url: String? = call.argument("url")
         if(url != null){
           play(url)
           result.success("Playing: $url")
         }else{
           result.error("URL_NOT_PROVIDED", "URL is required to play a media", null)
         }
-        result.success("OK")
-
+      }
+      "stop" -> {
+        stop()
+        result.success("Stop playing")
       }
       else -> {
         result.notImplemented()
@@ -78,6 +80,10 @@ class VlcLibraryIntegrationPlugin: FlutterPlugin, MethodCallHandler {
     val media = Media(libVLC, Uri.parse(url))
     mediaPlayer?.media = media
     mediaPlayer?.play()
+  }
+
+  private fun stop() {
+    mediaPlayer?.stop()
   }
 
 }

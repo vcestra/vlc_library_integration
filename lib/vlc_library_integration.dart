@@ -1,8 +1,19 @@
 import 'vlc_library_integration_platform_interface.dart';
 
 class VlcLibraryIntegration {
-  Future<void> play() {
-    return VlcLibraryIntegrationPlatform.instance.play();
+  static final VlcLibraryIntegration _instance =
+      VlcLibraryIntegration._internal();
+
+  VlcLibraryIntegration._internal();
+
+  static VlcLibraryIntegration get instance => _instance;
+
+  Future<void> play(String url) {
+    return VlcLibraryIntegrationPlatform.instance.play(url);
+  }
+
+  Future<void> stop() {
+    return VlcLibraryIntegrationPlatform.instance.stop();
   }
 
   Future<void> initialize() {

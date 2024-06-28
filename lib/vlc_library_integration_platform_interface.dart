@@ -24,8 +24,12 @@ abstract class VlcLibraryIntegrationPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<void> play() {
+  Future<void> play(String url) {
     throw UnimplementedError('play() has not been implemented.');
+  }
+
+  Future<void> stop() {
+    throw UnimplementedError('stop() has not been implemented.');
   }
 
   Future<void> initialize() {
